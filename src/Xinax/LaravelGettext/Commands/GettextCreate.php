@@ -36,42 +36,22 @@ class GettextCreate extends BaseCommand
             $localesGenerated = $this->fileSystem->generateLocales();
 
             foreach ($localesGenerated as $localePath) {
-                $this->comment(sprintf("Locale directory created (%s)", $localePath));
+                $this->comment(sprintf('Locale directory created (%s)', $localePath));
                 $dirCreations++;
             }
 
-            $this->info("Finished");
+            $this->info('Finished');
 
-            $msg = "The directory structure is right. No directory creation were needed.";
+            $msg = 'The directory structure is right. No directory creation were needed.';
 
             if ($dirCreations) {
-                $msg = $dirCreations . " directories has been created.";
+                $msg = $dirCreations . ' directories has been created.';
             }
 
             $this->info($msg);
 
         } catch (\Exception $e) {
-            $this->error($e->getFile() . ":" . $e->getLine() . " - " . $e->getMessage());
+            $this->error($e->getFile() . ':' . $e->getLine() . ' - ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [];
-    }
-
-    /**
-     * Get the console command options.
-     *
-     * @return array
-     */
-    protected function getOptions()
-    {
-        return [];
     }
 }
