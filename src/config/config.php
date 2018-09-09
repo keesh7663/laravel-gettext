@@ -1,12 +1,11 @@
 <?php
 
-
 return [
 
     /**
      * Translation handlers, options are:
      *
-     * - symfony: (recommended) uses the symfony translations component. Incompatible with php-gettext
+     * - symfony: (recommended) uses the Symfony translations component. Incompatible with php-gettext
      * you must uninstall the php-gettext module before use this handler.
      *
      * - gettext: requires the php-gettext module installed. This handler has well-known cache issues
@@ -19,8 +18,8 @@ return [
     'session-identifier' => 'laravel-gettext-locale',
 
     /**
-     * Default locale: this will be the default for your application.
-     * Is to be supposed that all strings are written in this language.
+     * Default locale: this will be the default locale for your application.
+     * It is assumed that all strings will be written in this language.
      */
     'locale' => 'en_US',
 
@@ -56,17 +55,17 @@ return [
     'translations-path' => '../resources/lang',
 
     /**
-     * Relative path to the app folder: is used on .po header files
+     * Relative path to the app folder: is used on .po file headers
      */
     'relative-path' => '../../../../../app',
 
     /**
-     * Fallback locale: When default locale is not available
+     * Fallback locale: When default locale is not available, this locale will be used
      */
     'fallback-locale' => 'en_US',
 
     /**
-     * Default domain used for translations: It is the file name for .po and .mo files
+     * Default domain used for translations: .po and .mo files will be created with this name
      */
     'domain' => 'messages',
 
@@ -81,10 +80,10 @@ return [
     'translator' => 'James Translator <james@translations.colm>',
 
     /**
-     * Paths where Poedit will search recursively for strings to translate.
+     * Paths where Poedit will conduct a recursive search for strings to translate.
      * All paths are relative to app/ (don't use trailing slash).
      *
-     * Remember to call artisan gettext:update after change this.
+     * Remember to call `php artisan gettext:update` after changing this.
      */
     'source-paths' => [
         'Http',
@@ -117,13 +116,15 @@ return [
     */
 
     /**
-     * Sync laravel: A flag that determines if the laravel built-in locale must
-     * be changed when you call LaravelGettext::setLocale.
+     * Sync Laravel:  Setting this flag to true will change the Laravel locale each time a call to
+     * LaravelGettext::setLocale() is called.
+     *
+     * Setting this to false disables this functionality.
      */
     'sync-laravel' => true,
 
     /**
-     * The adapter used to sync the laravel built-in locale
+     * The adapter used to sync the Laravel built-in locale
      */
     'adapter' => \Xinax\LaravelGettext\Adapters\LaravelAdapter::class,
 
@@ -138,7 +139,7 @@ return [
     'storage' => \Xinax\LaravelGettext\Storages\SessionStorage::class,
 
     /**
-     * Use custom locale that is not supported by the system
+     * Use a custom locale that is not supported by the system
      */
     'custom-locale' => false,
 
