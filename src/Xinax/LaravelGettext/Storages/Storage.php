@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaflalo
- * Date: 03/02/17
- * Time: 10:10 AM
- */
+
 namespace Xinax\LaravelGettext\Storages;
 
 interface Storage

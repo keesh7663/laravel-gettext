@@ -13,27 +13,21 @@ use Xinax\LaravelGettext\Config\Models\Config;
  * Main service provider
  *
  * Class LaravelGettextServiceProvider
+ *
  * @package Xinax\LaravelGettext
  *
  */
 class LaravelGettextServiceProvider extends ServiceProvider
 {
     /**
-     * Indicates if loading of the provider is deferred.
-     *
-     * @var bool
-     */
-    protected $defer = false;
-
-    /**
      * Bootstrap the application events.
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->publishes([
-            __DIR__ . '/../../config/config.php' => config_path('laravel-gettext.php')
+            __DIR__ . '/../../config/config.php' => config_path('laravel-gettext.php'),
         ], 'config');
 
     }
@@ -41,9 +35,9 @@ class LaravelGettextServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      *
-     * @return mixed
+     * @throws \Xinax\LaravelGettext\Exceptions\RequiredConfigurationKeyException
      */
-    public function register()
+    public function register(): void
     {
         $configuration = ConfigManager::create();
 
@@ -52,7 +46,7 @@ class LaravelGettextServiceProvider extends ServiceProvider
             $configuration->get()->getAdapter()
         );
 
-        $this->app->singleton(Config::class, function($app) use ($configuration){
+        $this->app->singleton(Config::class, function () use ($configuration) {
             return $configuration->get();
         });
 
@@ -60,9 +54,9 @@ class LaravelGettextServiceProvider extends ServiceProvider
         $this->app->singleton(LaravelGettext::class, function (Application $app) use ($configuration) {
 
             $fileSystem = new FileSystem($configuration->get(), app_path(), storage_path());
-            $storage = $app->make($configuration->get()->getStorage());
+            $storage    = $app->make($configuration->get()->getStorage());
 
-            if ('symfony' == $configuration->get()->getHandler()) {
+            if ('symfony' === $configuration->get()->getHandler()) {
                 // symfony translator implementation
                 $translator = new Translators\Symfony(
                     $configuration->get(),
@@ -97,7 +91,7 @@ class LaravelGettextServiceProvider extends ServiceProvider
     /**
      * Register commands
      */
-    protected function registerCommands()
+    protected function registerCommands(): void
     {
         // Package commands
         $this->app->bind('xinax::gettext.create', function ($app) {
@@ -119,10 +113,10 @@ class LaravelGettextServiceProvider extends ServiceProvider
      *
      * @return array
      */
-    public function provides()
+    public function provides(): array
     {
         return [
-            'laravel-gettext'
+            'laravel-gettext',
         ];
     }
 }

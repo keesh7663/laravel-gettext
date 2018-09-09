@@ -1,4 +1,6 @@
-<?php namespace Xinax\LaravelGettext\Translators;
+<?php
+
+namespace Xinax\LaravelGettext\Translators;
 
 use Xinax\LaravelGettext\Adapters\AdapterInterface;
 use Xinax\LaravelGettext\Config\Models\Config;
@@ -90,10 +92,10 @@ abstract class BaseTranslator implements TranslatorInterface
      *
      * @return bool
      */
-    public function isLocaleSupported($locale)
+    public function isLocaleSupported($locale): bool
     {
         if ($locale) {
-            return in_array($locale, $this->configuration->getSupportedLocales());
+            return \in_array($locale, $this->configuration->getSupportedLocales(), true);
         }
 
         return false;
@@ -107,6 +109,16 @@ abstract class BaseTranslator implements TranslatorInterface
     public function __toString()
     {
         return $this->getLocale();
+    }
+
+    /**
+     * Returns the current locale string identifier
+     *
+     * @return string
+     */
+    public function getLocale(): string
+    {
+        return $this->storage->getLocale();
     }
 
     /**
@@ -124,9 +136,9 @@ abstract class BaseTranslator implements TranslatorInterface
      *
      * @param mixed $encoding the encoding
      *
-     * @return self
+     * @return $this
      */
-    public function setEncoding($encoding)
+    public function setEncoding($encoding): self
     {
         $this->storage->setEncoding($encoding);
 
@@ -155,9 +167,9 @@ abstract class BaseTranslator implements TranslatorInterface
     /**
      * Returns the current domain
      *
-     * @return String
+     * @return string
      */
-    public function getDomain()
+    public function getDomain(): string
     {
         return $this->storage->getDomain();
     }
@@ -168,7 +180,7 @@ abstract class BaseTranslator implements TranslatorInterface
      *
      * @return array
      */
-    public function supportedLocales()
+    public function supportedLocales(): array
     {
         return $this->configuration->getSupportedLocales();
     }

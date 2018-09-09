@@ -136,15 +136,15 @@ class Config
         $this->supportedLocales = [];
         $this->sourcePaths      = [];
         $this->customLocale     = false;
-        $this->relativePath     = "../../../../../app";
+        $this->relativePath     = '../../../../../app';
     }
 
-    public function getRelativePath()
+    public function getRelativePath(): string
     {
         return $this->relativePath;
     }
 
-    public function setRelativePath($path)
+    public function setRelativePath($path): void
     {
         $this->relativePath = $path;
     }
@@ -152,7 +152,7 @@ class Config
     /**
      * @return string
      */
-    public function getSessionIdentifier()
+    public function getSessionIdentifier(): string
     {
         return $this->sessionIdentifier;
     }
@@ -162,7 +162,7 @@ class Config
      *
      * @return $this
      */
-    public function setSessionIdentifier($sessionIdentifier)
+    public function setSessionIdentifier($sessionIdentifier): self
     {
         $this->sessionIdentifier = $sessionIdentifier;
 
@@ -172,7 +172,7 @@ class Config
     /**
      * @return string
      */
-    public function getEncoding()
+    public function getEncoding(): string
     {
         return $this->encoding;
     }
@@ -182,7 +182,7 @@ class Config
      *
      * @return $this
      */
-    public function setEncoding($encoding)
+    public function setEncoding($encoding): self
     {
         $this->encoding = $encoding;
 
@@ -192,7 +192,7 @@ class Config
     /**
      * @return string
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale;
     }
@@ -202,7 +202,7 @@ class Config
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setLocale($locale): self
     {
         $this->locale = $locale;
 
@@ -214,7 +214,7 @@ class Config
      *
      * @return array
      */
-    public function getCategories()
+    public function getCategories(): array
     {
         return $this->categories;
     }
@@ -224,9 +224,9 @@ class Config
      *
      * @param array $categories
      *
-     * @return self
+     * @return $this
      */
-    public function setCategories($categories)
+    public function setCategories($categories): self
     {
         $this->categories = $categories;
 
@@ -236,7 +236,7 @@ class Config
     /**
      * @return string
      */
-    public function getFallbackLocale()
+    public function getFallbackLocale(): string
     {
         return $this->fallbackLocale;
     }
@@ -246,7 +246,7 @@ class Config
      *
      * @return $this
      */
-    public function setFallbackLocale($fallbackLocale)
+    public function setFallbackLocale($fallbackLocale): self
     {
         $this->fallbackLocale = $fallbackLocale;
 
@@ -256,7 +256,7 @@ class Config
     /**
      * @return array
      */
-    public function getSupportedLocales()
+    public function getSupportedLocales(): array
     {
         return $this->supportedLocales;
     }
@@ -266,7 +266,7 @@ class Config
      *
      * @return $this
      */
-    public function setSupportedLocales($supportedLocales)
+    public function setSupportedLocales($supportedLocales): self
     {
         $this->supportedLocales = $supportedLocales;
 
@@ -276,7 +276,7 @@ class Config
     /**
      * @return string
      */
-    public function getDomain()
+    public function getDomain(): string
     {
         return $this->domain;
     }
@@ -286,7 +286,7 @@ class Config
      *
      * @return $this
      */
-    public function setDomain($domain)
+    public function setDomain($domain): self
     {
         $this->domain = $domain;
 
@@ -296,7 +296,7 @@ class Config
     /**
      * @return string
      */
-    public function getTranslationsPath()
+    public function getTranslationsPath(): string
     {
         return $this->translationsPath;
     }
@@ -306,7 +306,7 @@ class Config
      *
      * @return $this
      */
-    public function setTranslationsPath($translationsPath)
+    public function setTranslationsPath($translationsPath): self
     {
         $this->translationsPath = $translationsPath;
 
@@ -316,7 +316,7 @@ class Config
     /**
      * @return string
      */
-    public function getProject()
+    public function getProject(): string
     {
         return $this->project;
     }
@@ -326,7 +326,7 @@ class Config
      *
      * @return $this
      */
-    public function setProject($project)
+    public function setProject($project): self
     {
         $this->project = $project;
 
@@ -336,7 +336,7 @@ class Config
     /**
      * @return string
      */
-    public function getTranslator()
+    public function getTranslator(): string
     {
         return $this->translator;
     }
@@ -346,7 +346,7 @@ class Config
      *
      * @return $this
      */
-    public function setTranslator($translator)
+    public function setTranslator($translator): self
     {
         $this->translator = $translator;
 
@@ -356,7 +356,7 @@ class Config
     /**
      * @return array
      */
-    public function getSourcePaths()
+    public function getSourcePaths(): array
     {
         return $this->sourcePaths;
     }
@@ -366,7 +366,7 @@ class Config
      *
      * @return $this
      */
-    public function setSourcePaths($sourcePaths)
+    public function setSourcePaths($sourcePaths): self
     {
         $this->sourcePaths = $sourcePaths;
 
@@ -376,7 +376,7 @@ class Config
     /**
      * @return boolean
      */
-    public function isSyncLaravel()
+    public function isSyncLaravel(): bool
     {
         return $this->syncLaravel;
     }
@@ -396,7 +396,7 @@ class Config
      *
      * @return $this
      */
-    public function setSyncLaravel($syncLaravel)
+    public function setSyncLaravel($syncLaravel): self
     {
         $this->syncLaravel = $syncLaravel;
 
@@ -406,9 +406,9 @@ class Config
     /**
      * Gets the adapter class.
      *
-     * @return string
+     * @return string|null
      */
-    public function getAdapter()
+    public function getAdapter(): ?string
     {
         return $this->adapter;
     }
@@ -418,7 +418,7 @@ class Config
      *
      * @return $this
      */
-    public function setAdapter($adapter)
+    public function setAdapter($adapter): self
     {
         $this->adapter = $adapter;
 
@@ -430,7 +430,7 @@ class Config
      *
      * @return string
      */
-    public function getStorage()
+    public function getStorage(): string
     {
         return $this->storage;
     }
@@ -440,7 +440,7 @@ class Config
      *
      * @return $this
      */
-    public function setStorage($storage)
+    public function setStorage($storage): self
     {
         $this->storage = $storage;
 
@@ -454,13 +454,13 @@ class Config
      *
      * @return array
      */
-    public function getAllDomains()
+    public function getAllDomains(): array
     {
         $domains = [$this->domain]; // add the default domain
 
         foreach ($this->sourcePaths as $domain => $paths) {
-            if (is_array($paths)) {
-                array_push($domains, $domain);
+            if (\is_array($paths)) {
+                $domains[] = $domain;
             }
         }
 
@@ -474,7 +474,7 @@ class Config
      *
      * @return array
      */
-    public function getSourcesFromDomain($domain)
+    public function getSourcesFromDomain($domain): array
     {
         // grab any paths wrapped in $domain
         $explicitPaths = array_key_exists($domain, $this->sourcePaths)
@@ -482,7 +482,7 @@ class Config
             : [];
 
         // if we're not including the default domain, return what we have so far
-        if ($this->domain != $domain) {
+        if ($this->domain !== $domain) {
             return $explicitPaths;
         }
 
@@ -491,7 +491,7 @@ class Config
         return array_reduce(
             $this->sourcePaths,
             function ($carry, $path) {
-                if (!is_array($path)) {
+                if (!\is_array($path)) {
                     $carry[] = $path;
                 }
 
@@ -506,7 +506,7 @@ class Config
      *
      * @return boolean
      */
-    public function getCustomLocale()
+    public function getCustomLocale(): bool
     {
         return $this->customLocale;
     }
@@ -514,11 +514,11 @@ class Config
     /**
      * Sets if will use C locale structure.
      *
-     * @param mixed $sourcePaths the source paths
+     * @param $customLocale mixed The custom Locale
      *
-     * @return self
+     * @return $this
      */
-    public function setCustomLocale($customLocale)
+    public function setCustomLocale($customLocale): self
     {
         $this->customLocale = $customLocale;
 
@@ -544,7 +544,7 @@ class Config
      *
      * @return self
      */
-    public function setKeywordsList($keywordsList)
+    public function setKeywordsList($keywordsList): self
     {
         $this->keywordsList = $keywordsList;
 
@@ -558,17 +558,17 @@ class Config
      *
      * @return $this
      *
-     * @throws \Exception
+     * @throws \RuntimeException
      */
-    public function setHandler($handler)
+    public function setHandler($handler): self
     {
-        if (!in_array($handler, [
+        if (!\in_array($handler, [
             'symfony',
             'gettext',
         ])
         ) {
-            throw new \Exception("Handler '$handler' is not supported'");
-        };
+            throw new \RuntimeException("Handler '$handler' is not supported'");
+        }
 
         $this->handler = $handler;
 

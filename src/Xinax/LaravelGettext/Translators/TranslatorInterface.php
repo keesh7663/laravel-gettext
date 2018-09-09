@@ -1,4 +1,6 @@
-<?php namespace Xinax\LaravelGettext\Translators;
+<?php
+
+namespace Xinax\LaravelGettext\Translators;
 
 use Xinax\LaravelGettext\Adapters\AdapterInterface;
 use Xinax\LaravelGettext\Config\Models\Config;
@@ -7,7 +9,6 @@ use Xinax\LaravelGettext\Storages\Storage;
 
 interface TranslatorInterface
 {
-
     /**
      * Initializes the module translator
      *
@@ -22,6 +23,8 @@ interface TranslatorInterface
 
     /**
      * Sets the current locale code
+     *
+     * @param $locale
      */
     public function setLocale($locale);
 
@@ -30,22 +33,24 @@ interface TranslatorInterface
      *
      * @return String
      */
-    public function getLocale();
+    public function getLocale(): string;
 
     /**
      * Returns a boolean that indicates if $locale
      * is supported by configuration
      *
+     * @param $locale
+     *
      * @return boolean
      */
-    public function isLocaleSupported($locale);
+    public function isLocaleSupported($locale): bool;
 
     /**
      * Returns supported locales
      *
      * @return array
      */
-    public function supportedLocales();
+    public function supportedLocales(): array;
 
     /**
      * Return the current locale
@@ -68,7 +73,7 @@ interface TranslatorInterface
      *
      * @return self
      */
-    public function setEncoding($encoding);
+    public function setEncoding($encoding): self;
 
     /**
      * Sets the current domain and updates gettext domain application

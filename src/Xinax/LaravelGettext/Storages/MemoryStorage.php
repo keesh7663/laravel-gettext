@@ -1,24 +1,34 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaflalo
- * Date: 03/02/17
- * Time: 10:08 AM
- */
 
 namespace Xinax\LaravelGettext\Storages;
 
-
 class MemoryStorage implements Storage
 {
-
-
     /**
      * Config container
      *
      * @type \Xinax\LaravelGettext\Config\Models\Config
      */
     protected $configuration;
+
+    /**
+     * @var String
+     */
+    protected $domain;
+
+    /**
+     * Current locale
+     *
+     * @type String
+     */
+    protected $locale;
+
+    /**
+     * Current encoding
+     *
+     * @type String
+     */
+    protected $encoding;
 
     /**
      * SessionStorage constructor.
@@ -30,31 +40,12 @@ class MemoryStorage implements Storage
         $this->configuration = $configuration;
     }
 
-
-    /**
-     * @var String
-     */
-    protected $domain;
-
-    /**
-     * Current locale
-     * @type String
-     */
-    protected $locale;
-
-    /**
-     * Current encoding
-     * @type String
-     */
-    protected $encoding;
-
-
     /**
      * Getter for domain
      *
-     * @return String
+     * @return string
      */
-    public function getDomain()
+    public function getDomain(): string
     {
         return $this->domain ?: $this->configuration->getDomain();
     }
@@ -64,7 +55,7 @@ class MemoryStorage implements Storage
      *
      * @return $this
      */
-    public function setDomain($domain)
+    public function setDomain($domain): self
     {
         $this->domain = $domain;
 
@@ -74,9 +65,9 @@ class MemoryStorage implements Storage
     /**
      * Getter for locale
      *
-     * @return String
+     * @return string
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale ?: $this->configuration->getLocale();
     }
@@ -86,7 +77,7 @@ class MemoryStorage implements Storage
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setLocale($locale): self
     {
         $this->locale = $locale;
 
@@ -98,7 +89,7 @@ class MemoryStorage implements Storage
      *
      * @return \Xinax\LaravelGettext\Config\Models\Config
      */
-    public function getConfiguration()
+    public function getConfiguration(): \Xinax\LaravelGettext\Config\Models\Config
     {
         return $this->configuration;
     }
@@ -106,9 +97,9 @@ class MemoryStorage implements Storage
     /**
      * Getter for encoding
      *
-     * @return String
+     * @return string
      */
-    public function getEncoding()
+    public function getEncoding(): string
     {
         return $this->encoding ?: $this->configuration->getEncoding();
     }
@@ -118,15 +109,12 @@ class MemoryStorage implements Storage
      *
      * @return $this
      */
-    public function setEncoding($encoding)
+    public function setEncoding($encoding): self
     {
         $this->encoding = $encoding;
 
         return $this;
     }
-
-
-
 
 
 }

@@ -26,9 +26,9 @@ class GettextUpdate extends BaseCommand
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @throws \Xinax\LaravelGettext\Exceptions\RequiredConfigurationKeyException
      */
-    public function handle()
+    public function handle(): void
     {
         $this->prepare();
 
@@ -39,7 +39,7 @@ class GettextUpdate extends BaseCommand
             // Translation files base path
             if (!file_exists($domainPath)) {
                 throw new DirectoryNotFoundException(
-                    "You need to call gettext:create (No locale directory)"
+                    'You need to call gettext:create (No locale directory)'
                 );
             }
 
@@ -78,7 +78,7 @@ class GettextUpdate extends BaseCommand
 
                     $this->comment(
                         sprintf(
-                            "PO file for locale: %s/%s updated successfully",
+                            'PO file for locale: %s/%s updated successfully',
                             $locale,
                             $domain
                         )
@@ -88,7 +88,7 @@ class GettextUpdate extends BaseCommand
                 }
             }
 
-            $this->info("Finished");
+            $this->info('Finished');
 
             // Number of locales created
             if ($count['added'] > 0) {
@@ -102,18 +102,8 @@ class GettextUpdate extends BaseCommand
             }
 
         } catch (Exception $e) {
-            $this->error($e->getFile() . ":" . $e->getLine() . " = " . $e->getMessage());
+            $this->error($e->getFile() . ':' . $e->getLine() . ' = ' . $e->getMessage());
         }
-    }
-
-    /**
-     * Get the console command arguments.
-     *
-     * @return array
-     */
-    protected function getArguments()
-    {
-        return [];
     }
 
     /**
@@ -121,7 +111,7 @@ class GettextUpdate extends BaseCommand
      *
      * @return array
      */
-    protected function getOptions()
+    protected function getOptions(): array
     {
         return [
             [

@@ -1,14 +1,8 @@
 <?php namespace Xinax\LaravelGettext\Testing;
 
-use \Illuminate\Foundation\Testing\TestCase;
+use Illuminate\Foundation\Testing\TestCase;
 use Xinax\LaravelGettext\LaravelGettextServiceProvider;
 
-/**
- * Created by PhpStorm.
- * User: shaggyz
- * Date: 17/10/16
- * Time: 14:41
- */
 class BaseTestCase extends TestCase
 {
     /**

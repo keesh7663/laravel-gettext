@@ -1,9 +1,12 @@
-<?php namespace Xinax\LaravelGettext\Composers;
+<?php
+
+namespace Xinax\LaravelGettext\Composers;
 
 use Xinax\LaravelGettext\LaravelGettext;
 
 /**
  * Simple language selector generator.
+ *
  * @author Nicolás Daniel Palumbo
  */
 class LanguageSelector
@@ -22,29 +25,41 @@ class LanguageSelector
 
     /**
      * @param LaravelGettext $gettext
-     * @param array $labels
+     * @param array          $labels
      */
     public function __construct(LaravelGettext $gettext, array $labels = [])
     {
-        $this->labels = $labels;
+        $this->labels  = $labels;
         $this->gettext = $gettext;
     }
 
     /**
      * @param LaravelGettext $gettext
-     * @param array $labels
+     * @param array          $labels
+     *
      * @return LanguageSelector
      */
-    public static function create(LaravelGettext $gettext, $labels = [])
+    public static function create(LaravelGettext $gettext, array $labels = []): LanguageSelector
     {
         return new LanguageSelector($gettext, $labels);
     }
 
     /**
-     * Renders the language selector
+     * Convert to string
+     *
      * @return string
      */
-    public function render()
+    public function __toString()
+    {
+        return $this->render();
+    }
+
+    /**
+     * Renders the language selector
+     *
+     * @return string
+     */
+    public function render(): string
     {
         /** @var string $currentLocale */
         $currentLocale = $this->gettext->getLocale();
@@ -62,7 +77,7 @@ class LanguageSelector
 
             $link = '<a href="/lang/' . $locale . '" class="' . $locale . '">' . $localeLabel . '</a>';
 
-            if ($locale == $currentLocale) {
+            if ($locale === $currentLocale) {
                 $link = '<strong class="active ' . $locale . '">' . $localeLabel . '</strong>';
             }
 
@@ -72,15 +87,5 @@ class LanguageSelector
         $html .= '</ul>';
 
         return $html;
-    }
-
-    /**
-     * Convert to string
-     *
-     * @return string
-     */
-    public function __toString()
-    {
-        return $this->render();
     }
 }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaflalo
- * Date: 18-02-23
- * Time: 11:50
- */
 
 namespace Xinax\LaravelGettext\Testing\Adapter;
 
@@ -22,7 +16,7 @@ class TestAdapter implements AdapterInterface
      *
      * @return string
      */
-    public function getLocale()
+    public function getLocale(): string
     {
         return $this->locale;
     }
@@ -34,7 +28,7 @@ class TestAdapter implements AdapterInterface
      *
      * @return boolean
      */
-    public function setLocale($locale)
+    public function setLocale($locale): bool
     {
         $this->locale = $locale;
 
@@ -46,7 +40,7 @@ class TestAdapter implements AdapterInterface
      *
      * @return string
      */
-    public function getApplicationPath()
+    public function getApplicationPath(): string
     {
         return app_path();
     }

@@ -1,4 +1,6 @@
-<?php namespace Xinax\LaravelGettext\Translators;
+<?php
+
+namespace Xinax\LaravelGettext\Translators;
 
 use Symfony\Component\Translation\Loader\PoFileLoader;
 use Symfony\Component\Translation\Translator as SymfonyTranslator;
@@ -44,7 +46,7 @@ class Symfony extends BaseTranslator
      *
      * @return string
      */
-    public function translate($message)
+    public function translate($message):string
     {
         return $this->symfonyTranslator->trans($message, [], $this->getDomain(), $this->getLocale());
     }
@@ -54,9 +56,9 @@ class Symfony extends BaseTranslator
      *
      * @return SymfonyTranslator
      */
-    protected function getTranslator()
+    protected function getTranslator(): SymfonyTranslator
     {
-        if (isset($this->symfonyTranslator)) {
+        if ($this->symfonyTranslator !== null) {
             return $this->symfonyTranslator;
         }
 
@@ -71,13 +73,13 @@ class Symfony extends BaseTranslator
      *
      * @return $this
      */
-    public function setLocale($locale)
+    public function setLocale($locale): self
     {
         parent::setLocale($locale);
         $this->getTranslator()->setLocale($locale);
         $this->loadLocaleFile();
 
-        if ($locale != $this->adapter->getLocale()) {
+        if ($locale !== $this->adapter->getLocale()) {
             $this->adapter->setLocale($locale);
         }
 
@@ -88,12 +90,12 @@ class Symfony extends BaseTranslator
      * Set domain overload.
      * Needed to re-build the catalogue when domain changes.
      *
-     *
      * @param String $domain
      *
      * @return $this
+     * @throws \Xinax\LaravelGettext\Exceptions\UndefinedDomainException
      */
-    public function setDomain($domain)
+    public function setDomain($domain): self
     {
         parent::setDomain($domain);
 
@@ -107,7 +109,7 @@ class Symfony extends BaseTranslator
      *
      * @return SymfonyTranslator
      */
-    protected function createTranslator()
+    protected function createTranslator(): SymfonyTranslator
     {
         $translator = new SymfonyTranslator($this->configuration->getLocale());
         $translator->setFallbackLocales([$this->configuration->getFallbackLocale()]);
@@ -126,7 +128,7 @@ class Symfony extends BaseTranslator
      *
      * @return string
      */
-    public function translatePlural($singular, $plural, $amount)
+    public function translatePlural($singular, $plural, $amount): string
     {
         return $this->symfonyTranslator->transChoice(
         // Symfony translator looks for 'singular|plural' message id in catalog,
@@ -150,7 +152,7 @@ class Symfony extends BaseTranslator
      *
      * @return string
      */
-    public function translatePluralInline($message, $amount)
+    public function translatePluralInline($message, $amount): string
     {
         return $this->symfonyTranslator->transChoice(
             $message,

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaflalo
- * Date: 18-03-01
- * Time: 10:23
- */
 
 namespace Xinax\LaravelGettext\FileLoader\Cache;
 
@@ -37,9 +31,9 @@ class ApcuFileCacheLoader extends FileLoader
      *
      * @throws InvalidResourceException if stream content has an invalid format
      */
-    protected function loadResource($resource)
+    protected function loadResource($resource): array
     {
-        if (!extension_loaded('apcu')) {
+        if (!\extension_loaded('apcu')) {
             return $this->underlyingFileLoader->loadResource($resource);
         }
 
@@ -53,7 +47,7 @@ class ApcuFileCacheLoader extends FileLoader
      *
      * @return string
      */
-    private function checksum($resource)
+    private function checksum($resource): string
     {
         return filemtime($resource) . '-' . filesize($resource);
     }
@@ -65,7 +59,7 @@ class ApcuFileCacheLoader extends FileLoader
      *
      * @return string
      */
-    private function cacheChecksum($resource)
+    private function cacheChecksum($resource): string
     {
         return apcu_fetch($resource . '-checksum');
     }
@@ -86,20 +80,20 @@ class ApcuFileCacheLoader extends FileLoader
     /**
      * Return the cached messages
      *
-     * @param $ressource
+     * @param $resource
      *
      * @return array
      */
-    private function cachedMessages($ressource)
+    private function cachedMessages($resource): array
     {
-        if ($this->cacheChecksum($ressource) == ($currentChecksum = $this->checksum($ressource))) {
-            return apcu_fetch($ressource . '-messages');
+        if ($this->cacheChecksum($resource) === ($currentChecksum = $this->checksum($resource))) {
+            return apcu_fetch($resource . '-messages');
         }
 
-        $messages = $this->underlyingFileLoader->loadResource($ressource);
+        $messages = $this->underlyingFileLoader->loadResource($resource);
 
-        apcu_store($ressource . '-messages', $messages);
-        $this->setCacheChecksum($ressource, $currentChecksum);
+        apcu_store($resource . '-messages', $messages);
+        $this->setCacheChecksum($resource, $currentChecksum);
 
         return $messages;
     }

@@ -18,10 +18,10 @@ if (!function_exists('_i')) {
         $translator  = app(LaravelGettext::class);
         $translation = $translator->translate($message);
 
-        if (strlen($translation)) {
+        if (\strlen($translation)) {
             if (!empty($args)) {
-                if (!is_array($args)) {
-                    $args = array_slice(func_get_args(), 1);
+                if (!\is_array($args)) {
+                    $args = \array_slice(\func_get_args(), 1);
                 }
                 $translation = vsprintf($translation, $args);
             }
@@ -39,7 +39,7 @@ if (!function_exists('_i')) {
     }
 }
 
-if (!function_exists('__')) {
+if (!\function_exists('__')) {
     /**
      * Translate a formatted string based on printf formats
      * Can be use an array on args or use the number of the arguments
@@ -55,11 +55,13 @@ if (!function_exists('__')) {
     }
 }
 
-if (!function_exists('_')) {
+if (!\function_exists('_')) {
     /**
      * Generic translation function
      *
-     * @param $message
+     * @param      $message
+     *
+     * @param mixed $args
      *
      * @return mixed
      */
@@ -69,7 +71,7 @@ if (!function_exists('_')) {
     }
 }
 
-if (!function_exists('_n')) {
+if (!\function_exists('_n')) {
     /**
      * Translate a formatted pluralized string based on printf formats
      * Can be use an array on args or use the number of the arguments
@@ -87,8 +89,8 @@ if (!function_exists('_n')) {
         $translator = app(LaravelGettext::class);
         $message    = $translator->translatePlural($singular, $plural, $count);
 
-        if (!empty($args) && !is_array($args)) {
-            $args = array_slice(func_get_args(), 3);
+        if (!empty($args) && !\is_array($args)) {
+            $args = \array_slice(\func_get_args(), 3);
         }
         $message = vsprintf($message, $args);
 
@@ -96,7 +98,7 @@ if (!function_exists('_n')) {
     }
 }
 
-if (!function_exists('_s')) {
+if (!\function_exists('_s')) {
     /**
      * Translate a formatted pluralized string based on printf formats mixed with the Symfony format
      * Can be use an array on args or use the number of the arguments
@@ -115,8 +117,8 @@ if (!function_exists('_s')) {
         $translator = app(LaravelGettext::class);
         $message    = $translator->getTranslator()->translatePluralInline($message, $count);
 
-        if (!empty($args) && !is_array($args)) {
-            $args = array_slice(func_get_args(), 3);
+        if (!empty($args) && !\is_array($args)) {
+            $args = \array_slice(\func_get_args(), 3);
         }
         $message = vsprintf($message, $args);
 

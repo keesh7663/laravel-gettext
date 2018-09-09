@@ -17,13 +17,14 @@ class GettextCreate extends BaseCommand
      *
      * @var string
      */
-    protected $description =
-        'Generates the initial directories and files for laravel-gettext.';
+    protected $description = 'Generates the initial directories and files for laravel-gettext.';
 
     /**
      * Execute the console command
+     *
+     * @throws \Xinax\LaravelGettext\Exceptions\RequiredConfigurationKeyException
      */
-    public function handle()
+    public function handle(): void
     {
         $this->prepare();
 
