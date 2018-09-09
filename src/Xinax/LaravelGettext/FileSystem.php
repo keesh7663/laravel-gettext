@@ -190,7 +190,7 @@ class FileSystem
         }
 
         // File creation
-        $file = fopen($path, "w");
+        $file   = fopen($path, 'wb');
         $result = fwrite($file, $template);
         fclose($file);
 
