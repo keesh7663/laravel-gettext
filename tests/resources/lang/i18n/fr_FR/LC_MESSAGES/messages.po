@@ -43,7 +43,7 @@ msgid "Are you having a good day ?"
 msgstr "Est-ce une bonne journée ?"
 
 #: storage/framework/messages/5c321425552518709a79fd825ea60bc0e0bd1988.php.php:9
-msgid "general string with balde"
+msgid "general string with blade"
 msgstr "Chaine générale avec php echo"
 
 #: storage/framework/messages/5c321425552518709a79fd825ea60bc0e0bd1988.php.php:13
@@ -52,7 +52,7 @@ msgid "general string with php echo"
 msgstr "Chaine générale avec php echo"
 
 #: storage/framework/messages/7ba456312e96f77d3022e42d02ad63812775f6af.php.php:9
-msgid "Backend string with balde"
+msgid "Backend string with blade"
 msgstr "Chaine du backend"
 
 #: storage/framework/messages/7ba456312e96f77d3022e42d02ad63812775f6af.php.php:12
@@ -61,7 +61,7 @@ msgid "Backend string with php echo"
 msgstr "Chaine du backend"
 
 #: storage/framework/messages/87cc549a0545cdfd2df66045cedc5f8f1120a7ca.php.php:9
-msgid "Frontend string with balde"
+msgid "Frontend string with blade"
 msgstr "Chaine de caractère frontend"
 
 #: storage/framework/messages/87cc549a0545cdfd2df66045cedc5f8f1120a7ca.php.php:12

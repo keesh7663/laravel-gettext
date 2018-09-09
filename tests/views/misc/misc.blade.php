@@ -6,7 +6,7 @@
 </head>
 <body>
 <section>
-    {{ _("general string with balde") }}
+    {{ _("general string with blade") }}
 </section>
 <footer>
     <?= _("general string with php echo") ?>

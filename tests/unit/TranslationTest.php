@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaflalo
- * Date: 17-08-01
- * Time: 10:22
- */
 
 namespace unit;
 
@@ -34,7 +28,7 @@ class TranslationTest extends BaseTestCase
      */
     protected $translator;
 
-    public function setUp()
+    public function setUp(): void
     {
         parent::setUp();
         $testConfig = include __DIR__ . '/../config/config_fr.php';
@@ -56,7 +50,7 @@ class TranslationTest extends BaseTestCase
     /**
      * View compiler tests
      */
-    public function testCompileViews()
+    public function testCompileViews(): void
     {
         $viewPaths = ['views'];
 
@@ -65,42 +59,42 @@ class TranslationTest extends BaseTestCase
 
     }
 
-    public function testFrenchTranslation()
+    public function testFrenchTranslation(): void
     {
         $string = $this->translator->setLocale('fr_FR')->translate('Controller string');
         $this->assertEquals('Chaine de caractère du controlleur', $string);
     }
 
-    public function testFrenchTranslationReplacement()
+    public function testFrenchTranslationReplacement(): void
     {
         $string = $this->translator->setLocale('fr_FR')->translate('Hello %s, how are you ?');
         $this->assertEquals('Salut %s, comment va ?', $string);
     }
 
-    public function testFrenchTranslationPluralNone()
+    public function testFrenchTranslationPluralNone(): void
     {
         $string = $this->translator->setLocale('fr_FR')
-                                   ->translatePluralInline(
-                                       ' {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count% apples',
-                                       0);
+            ->translatePluralInline(
+                ' {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count% apples',
+                0);
         $this->assertEquals('Il n\'y a pas de pommes', $string);
     }
 
-    public function testFrenchTranslationPluralOne()
+    public function testFrenchTranslationPluralOne(): void
     {
         $string = $this->translator->setLocale('fr_FR')
-                                   ->translatePluralInline(
-                                       ' {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count% apples',
-                                       1);
+            ->translatePluralInline(
+                ' {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count% apples',
+                1);
         $this->assertEquals('Il y a une pomme', $string);
     }
 
-    public function testFrenchTranslationPluralMultiple()
+    public function testFrenchTranslationPluralMultiple(): void
     {
         $string = $this->translator->setLocale('fr_FR')
-                                   ->translatePluralInline(
-                                       ' {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count% apples',
-                                       5);
+            ->translatePluralInline(
+                ' {0} There are no apples|{1} There is one apple|]1,Inf[ There are %count% apples',
+                5);
         $this->assertEquals('Il y a 5 pommes', $string);
     }
 }

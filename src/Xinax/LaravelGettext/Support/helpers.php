@@ -1,8 +1,10 @@
 <?php
 
+namespace Xinax\LaravelGettext\Support;
+
 use Xinax\LaravelGettext\LaravelGettext;
 
-if (!function_exists('_i')) {
+if (!\function_exists('_i')) {
     /**
      * Translate a formatted string based on printf formats
      * Can be use an array on args or use the number of the arguments

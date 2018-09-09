@@ -6,7 +6,7 @@
 </head>
 <body>
 	<section>
-		{{ _("Frontend string with balde") }}	
+		{{ _("Frontend string with blade") }}
 	</section>
 	<footer>
 		<?= _("Frontend string with php echo") ?>

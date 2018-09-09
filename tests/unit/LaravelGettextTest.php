@@ -1,14 +1,12 @@
 <?php
 
-use \Mockery as m;
-
+use Mockery as m;
 use Xinax\LaravelGettext\Adapters\AdapterInterface;
+use Xinax\LaravelGettext\Config\ConfigManager;
+use Xinax\LaravelGettext\FileSystem;
 use Xinax\LaravelGettext\Storages\MemoryStorage;
 use Xinax\LaravelGettext\Testing\Adapter\TestAdapter;
 use Xinax\LaravelGettext\Testing\BaseTestCase;
-use Xinax\LaravelGettext\Config\ConfigManager;
-use Xinax\LaravelGettext\Adapters\LaravelAdapter;
-use Xinax\LaravelGettext\FileSystem;
 use Xinax\LaravelGettext\Translators\Symfony;
 
 class LaravelGettextTest extends BaseTestCase
@@ -18,7 +16,7 @@ class LaravelGettextTest extends BaseTestCase
      *
      * @var string
      */
-    protected $appPath = __DIR__.'/../../vendor/laravel/laravel/bootstrap/app.php';
+    protected $appPath = __DIR__ . '/../../vendor/laravel/laravel/bootstrap/app.php';
 
     /**
      * @var Symfony
@@ -30,8 +28,8 @@ class LaravelGettextTest extends BaseTestCase
         parent::setUp();
         $testConfig = include __DIR__ . '/../config/config.php';
 
-        $config = ConfigManager::create($testConfig);
-        $adapter = app($config->get()->getAdapter());
+        $config     = ConfigManager::create($testConfig);
+        $adapter    = app($config->get()->getAdapter());
         $fileSystem = new FileSystem($config->get(), app_path(), storage_path());
 
         $translator = new Symfony(
@@ -44,10 +42,11 @@ class LaravelGettextTest extends BaseTestCase
         $this->translator = $translator;
     }
 
-    public function testAdapter() {
+    public function testAdapter()
+    {
         $testConfig = include __DIR__ . '/../config/config.php';
-        $config = ConfigManager::create($testConfig);
-        $adapter = app($config->get()->getAdapter());
+        $config     = ConfigManager::create($testConfig);
+        $adapter    = app($config->get()->getAdapter());
         $this->assertInstanceOf(AdapterInterface::class, $adapter);
         $this->assertInstanceOf(TestAdapter::class, $adapter);
     }
@@ -99,7 +98,7 @@ class LaravelGettextTest extends BaseTestCase
     {
         $response = $this->translator->setEncoding('UTF-8');
         $this->assertNotEmpty($response);
-        $this->assertInstanceOf('Xinax\LaravelGettext\Translators\Symfony', $response);
+        $this->assertInstanceOf(Symfony::class, $response);
     }
 
     public function tearDown()

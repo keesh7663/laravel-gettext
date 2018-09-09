@@ -6,7 +6,7 @@
 </head>
 <body>
 	<section>
-		<?php echo _("Frontend string with balde"); ?>	
+		<?php echo _("Frontend string with blade"); ?>
 	</section>
 	<footer>
 		<?= _("Frontend string with php echo") ?>

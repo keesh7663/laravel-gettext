@@ -1,14 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: aaflalo
- * Date: 03/02/17
- * Time: 10:08 AM
- */
 
 namespace Xinax\LaravelGettext\Storages;
 
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class SessionStorage implements Storage
 {
