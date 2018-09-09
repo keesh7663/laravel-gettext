@@ -57,25 +57,15 @@ abstract class BaseTranslator implements TranslatorInterface
     }
 
     /**
-     * Returns the current locale string identifier
-     *
-     * @return String
-     */
-    public function getLocale()
-    {
-        return $this->storage->getLocale();
-    }
-
-    /**
      * Sets and stores on session the current locale code
      *
      * @param $locale
      *
-     * @return BaseTranslator
+     * @return BaseTranslator|string
      */
     public function setLocale($locale)
     {
-        if ($locale == $this->storage->getLocale()) {
+        if ($locale === $this->storage->getLocale()) {
             return $this;
         }
 
@@ -136,9 +126,9 @@ abstract class BaseTranslator implements TranslatorInterface
      *
      * @param mixed $encoding the encoding
      *
-     * @return $this
+     * @return $this|\Xinax\LaravelGettext\Translators\TranslatorInterface
      */
-    public function setEncoding($encoding): self
+    public function setEncoding($encoding)
     {
         $this->storage->setEncoding($encoding);
 
@@ -151,11 +141,11 @@ abstract class BaseTranslator implements TranslatorInterface
      * @param   String $domain
      *
      * @throws  UndefinedDomainException    If domain is not defined
-     * @return  self
+     * @return  $this|\Xinax\LaravelGettext\Translators\BaseTranslator
      */
     public function setDomain($domain)
     {
-        if (!in_array($domain, $this->configuration->getAllDomains())) {
+        if (!\in_array($domain, $this->configuration->getAllDomains(), true)) {
             throw new UndefinedDomainException("Domain '$domain' is not registered.");
         }
 

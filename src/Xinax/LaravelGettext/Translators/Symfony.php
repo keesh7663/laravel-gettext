@@ -166,13 +166,13 @@ class Symfony extends BaseTranslator
     /**
      * @internal param $translator
      */
-    protected function loadLocaleFile()
+    protected function loadLocaleFile(): void
     {
-        if (isset($this->loadedResources[$this->getDomain()])
-            && isset($this->loadedResources[$this->getDomain()][$this->getLocale()])
+        if (isset($this->loadedResources[$this->getDomain()][$this->getLocale()])
         ) {
             return;
         }
+
         $translator = $this->getTranslator();
 
         $fileMo = $this->fileSystem->makeFilePath($this->getLocale(), $this->getDomain(), 'mo');
@@ -184,42 +184,5 @@ class Symfony extends BaseTranslator
         }
 
         $this->loadedResources[$this->getDomain()][$this->getLocale()] = true;
-    }
-
-    /**
-     * Returns a boolean that indicates if $locale
-     * is supported by configuration
-     *
-     * @param $locale
-     *
-     * @return bool
-     */
-    public function isLocaleSupported($locale)
-    {
-        if ($locale) {
-            return in_array($locale, $this->configuration->getSupportedLocales());
-        }
-
-        return false;
-    }
-
-    /**
-     * Return the current locale
-     *
-     * @return mixed
-     */
-    public function __toString()
-    {
-        return $this->getLocale();
-    }
-
-    /**
-     * Returns supported locales
-     *
-     * @return array
-     */
-    public function supportedLocales()
-    {
-        return $this->configuration->getSupportedLocales();
     }
 }

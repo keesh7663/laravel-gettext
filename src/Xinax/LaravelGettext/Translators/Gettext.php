@@ -140,27 +140,18 @@ class Gettext extends BaseTranslator
      * Returns a boolean that indicates if $locale
      * is supported by configuration
      *
+     * @param $locale
+     *
      * @return boolean
      */
-    public function isLocaleSupported($locale)
+    public function isLocaleSupported($locale): bool
     {
         if ($locale) {
-            return in_array($locale, $this->supportedLocales());
+            return \in_array($locale, $this->supportedLocales(), true);
         }
 
         return false;
     }
-
-    /**
-     * Return the current locale
-     *
-     * @return mixed
-     */
-    public function __toString()
-    {
-        return $this->getLocale();
-    }
-
 
     /**
      * Gets the Current encoding.

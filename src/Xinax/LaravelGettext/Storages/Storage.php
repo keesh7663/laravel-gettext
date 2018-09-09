@@ -7,42 +7,42 @@ interface Storage
     /**
      * Getter for domain
      *
-     * @return String
+     * @return string
      */
-    public function getDomain();
+    public function getDomain(): string;
 
     /**
      * @param string $domain
      *
-     * @return $this
+     * @return $this|\Xinax\LaravelGettext\Storages\MemoryStorage
      */
     public function setDomain($domain);
 
     /**
      * Getter for locale
      *
-     * @return String
+     * @return string
      */
-    public function getLocale();
+    public function getLocale(): string;
 
     /**
      * @param string $locale
      *
-     * @return $this
+     * @return $this|\Xinax\LaravelGettext\Storages\MemoryStorage
      */
     public function setLocale($locale);
 
     /**
      * Getter for locale
      *
-     * @return String
+     * @return string
      */
-    public function getEncoding();
+    public function getEncoding(): string;
 
     /**
      * @param string $encoding
      *
-     * @return $this
+     * @return $this|\Xinax\LaravelGettext\Storages\MemoryStorage
      */
     public function setEncoding($encoding);
 
@@ -51,5 +51,5 @@ interface Storage
      *
      * @return \Xinax\LaravelGettext\Config\Models\Config
      */
-    public function getConfiguration();
+    public function getConfiguration(): \Xinax\LaravelGettext\Config\Models\Config;
 }
